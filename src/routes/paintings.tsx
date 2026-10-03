@@ -1,0 +1,8 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
+import { ArtworkCard } from "@/components/site/ArtworkCard";
+import { Reveal } from "@/components/site/Reveal";
+import { artworks } from "@/components/site/data";
+const url="https://shaheencarrenatl.lovable.app/paintings";
+export const Route=createFileRoute("/paintings")({head:()=>({meta:[{title:"Paintings & Wall Art Lahore | Frame Frosh"},{name:"description",content:"Discover handmade paintings, abstract paintings, Lahore heritage art, portraiture and modern wall art in Lahore."},{property:"og:title",content:"Paintings & Wall Art Lahore | Frame Frosh"},{property:"og:description",content:"Handmade paintings and ready-to-hang wall art selected for beautiful spaces."},{property:"og:type",content:"website"},{property:"og:url",content:url},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:url}]}),component:PaintingsPage});
+function PaintingsPage(){return <SiteLayout><PageHeader eyebrow="Paintings Lahore" title={<>Original feeling, <em>framed beautifully.</em></>} blurb="Explore painterly florals, abstraction, portraiture and Lahore heritage artwork."/><section className="py-20"><div className="mx-auto max-w-7xl px-5 lg:px-8"><div className="columns-1 gap-7 sm:columns-2 lg:columns-3">{artworks.map((a,i)=><div key={a.name} className="mb-7 break-inside-avoid"><Reveal delay={i*60}><ArtworkCard artwork={a}/></Reveal></div>)}</div></div></section></SiteLayout>}

@@ -1,0 +1,97 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px); --radius-md: var(--radius); --radius-lg: calc(var(--radius) + 2px); --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground); --color-destructive: var(--destructive); --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring); --color-hero-foreground: var(--hero-foreground); --color-hero-muted: var(--hero-muted); --color-hero-accent: var(--hero-accent);
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif; --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: .25rem;
+  --background: oklch(.965 .012 82); --foreground: oklch(.24 .012 72); --card: oklch(.99 .006 82); --card-foreground: oklch(.24 .012 72);
+  --popover: oklch(.99 .006 82); --popover-foreground: oklch(.24 .012 72); --primary: oklch(.56 .085 76); --primary-foreground: oklch(.985 .008 82);
+  --secondary: oklch(.925 .018 82); --secondary-foreground: oklch(.28 .014 72); --muted: oklch(.91 .014 82); --muted-foreground: oklch(.48 .018 72);
+  --accent: oklch(.86 .038 78); --accent-foreground: oklch(.25 .012 72); --destructive: oklch(.58 .21 27); --destructive-foreground: oklch(.98 .003 90);
+  --border: oklch(.83 .024 78); --input: oklch(.78 .025 78); --ring: oklch(.56 .085 76);
+  --hero-foreground: oklch(.985 .008 82); --hero-muted: oklch(.91 .012 82); --hero-accent: oklch(.82 .11 82);
+  --hero-overlay: linear-gradient(90deg, oklch(.14 .012 65 / .88), oklch(.18 .012 65 / .56) 46%, transparent 78%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { margin: 0; background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); letter-spacing: 0; }
+  ::selection { background: color-mix(in oklab, var(--primary) 35%, transparent); }
+  em { font-weight: 400; }
+}
+
+@utility bg-hero-overlay { background: var(--hero-overlay); }
+@utility bg-image-shade { background: linear-gradient(180deg, transparent 50%, oklch(.12 .01 70 / .82)); }
+@utility frame-gold { border-color: oklch(.66 .11 78); box-shadow: inset 0 0 0 2px oklch(.84 .08 82); }
+@utility frame-antique { border-color: oklch(.49 .075 70); box-shadow: inset 0 0 0 2px oklch(.7 .08 76); }
+@utility frame-black { border-color: oklch(.22 .008 70); }
+@utility frame-wood { border-color: oklch(.48 .07 57); }
+@utility frame-silver { border-color: oklch(.69 .018 80); box-shadow: inset 0 0 0 2px oklch(.9 .008 80); }
+@utility frame-white { border-color: oklch(.96 .006 82); box-shadow: 0 0 0 1px var(--border); }
+
+.gallery-card { position: relative; isolation: isolate; }
+.gallery-card::before { content: ""; position: absolute; inset: 2px; z-index: -1; background: color-mix(in oklab, var(--primary) 48%, transparent); filter: blur(20px); opacity: 0; transition: opacity .5s ease, inset .5s ease; }
+.gallery-card:hover::before, .gallery-card:focus-within::before { inset: -5px; opacity: .42; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+#lovable-badge { display: none !important; }
+
+.frame-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 2.5rem 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.frame-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: frame-marquee-right 20s linear infinite;
+  will-change: transform;
+}
+
+.frame-marquee-group { display: flex; flex-shrink: 0; }
+
+.frame-card {
+  width: 13rem;
+  margin-right: 2rem;
+  flex-shrink: 0;
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+.frame-card-art { transition: filter .5s ease; }
+
+.frame-card:hover { transform: translateY(-10px) scale(1.04); }
+.frame-card:hover .frame-card-art { filter: drop-shadow(0 18px 22px oklch(.3 .03 70 / .28)); }
+
+.frame-marquee:hover .frame-marquee-track { animation-play-state: paused; }
+
+/* left se right ki taraf chalta hai */
+@keyframes frame-marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@media (min-width: 768px) {
+  .frame-card { width: 15rem; margin-right: 2.5rem; }
+}
+
+/* jinke device par animations off hain, unke liye manual swipe */
+@media (prefers-reduced-motion: reduce) {
+  .frame-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .frame-marquee-track { animation: none; transform: none; }
+}

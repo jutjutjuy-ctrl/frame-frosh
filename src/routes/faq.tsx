@@ -1,0 +1,8 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Accordion,AccordionContent,AccordionItem,AccordionTrigger } from "@/components/ui/accordion";
+import { SiteLayout,PageHeader } from "@/components/site/SiteLayout";
+import { Reveal } from "@/components/site/Reveal";
+import { faqs } from "@/components/site/data";
+const url="https://shaheencarrenatl.lovable.app/faq";
+export const Route=createFileRoute("/faq")({head:()=>({meta:[{title:"Framing FAQs | Frame Frosh Lahore"},{name:"description",content:"Answers about custom-size frames, paintings, portraits, photographs and ready-to-hang wall art from Frame Frosh Lahore."},{property:"og:title",content:"Framing FAQs | Frame Frosh Lahore"},{property:"og:description",content:"Helpful answers about artwork and custom picture framing."},{property:"og:type",content:"website"},{property:"og:url",content:url},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:url}]}),component:FaqPage});
+function FaqPage(){return <SiteLayout><PageHeader eyebrow="FAQs" title={<>A little more <em>detail.</em></>} blurb="Common questions about artwork, custom sizing and framing your personal pieces."/><section className="py-20"><div className="mx-auto max-w-3xl px-5"><Reveal><Accordion type="single" collapsible>{faqs.map((f,i)=><AccordionItem key={f.q} value={`item-${i}`}><AccordionTrigger className="py-6 text-left font-serif text-xl hover:no-underline">{f.q}</AccordionTrigger><AccordionContent className="pb-6 text-sm leading-7 text-muted-foreground">{f.a}</AccordionContent></AccordionItem>)}</Accordion></Reveal></div></section></SiteLayout>}

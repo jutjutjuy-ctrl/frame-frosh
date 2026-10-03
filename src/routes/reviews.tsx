@@ -1,0 +1,8 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Quote } from "lucide-react";
+import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
+import { Reveal } from "@/components/site/Reveal";
+import { testimonials } from "@/components/site/data";
+const url="https://shaheencarrenatl.lovable.app/reviews";
+export const Route=createFileRoute("/reviews")({head:()=>({meta:[{title:"Client Reviews | Frame Frosh Lahore"},{name:"description",content:"Read client experiences with Frame Frosh custom framing, painting selection, finishing and artwork presentation."},{property:"og:title",content:"Client Reviews | Frame Frosh Lahore"},{property:"og:description",content:"Client notes on custom framing, art selection and careful finishing."},{property:"og:type",content:"website"},{property:"og:url",content:url},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:url}]}),component:ReviewsPage});
+function ReviewsPage(){return <SiteLayout><PageHeader eyebrow="Reviews" title={<>Words from spaces <em>we helped shape.</em></>} blurb="Notes about the framing, finishing, artwork and care behind each experience."/><section className="py-20"><div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-2 lg:grid-cols-3 lg:px-8">{testimonials.map((r,i)=><Reveal key={r.role} delay={i*70}><figure className="h-full border-t-2 border-primary bg-card p-7 shadow-sm"><Quote className="size-6 text-primary"/><blockquote className="mt-7 font-serif text-2xl leading-9">“{r.quote}”</blockquote><figcaption className="mt-8 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{r.role}</figcaption></figure></Reveal>)}</div></section></SiteLayout>}
