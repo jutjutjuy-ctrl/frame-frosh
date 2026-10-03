@@ -86,12 +86,12 @@ export const frameStyles = [
 ];
 
 export const testimonials = [
-  { quote: "The framing brought the painting to life. Every edge and finish feels beautifully considered.", role: "Custom framing client" },
-  { quote: "Our portrait was handled with care and the final presentation feels truly special.", role: "Portrait framing client" },
-  { quote: "The artwork transformed the room. The team helped us choose a frame that feels completely at home.", role: "Wall art client" },
-  { quote: "Thoughtful guidance, fine finishing and a result that exceeded what we imagined.", role: "Artwork client" },
-  { quote: "The frame is understated, elegant and perfectly proportioned for the piece.", role: "Custom-size framing client" },
-  { quote: "From selecting the artwork to the final presentation, the experience felt personal and refined.", role: "Collection client" },
+  { quote: "My first experience with them was excellent. Wais is extremely professional and he delivered on time, in a very good quality. I highly recommend working with him.", role: "KHAWAJA MUHAMMAD" },
+  { quote: "Highly Recommended to turn your memories into frames.", role: "SAAD BAIG" },
+  { quote: "Highly recommend ❤️", role: "ZAIN ABBASI" },
+  { quote: "Superb framing quality and attention to detail. Handled our custom artwork with utmost care and delivered on time.", role: "MUBASHIR JOYA" },
+  { quote: "Particularly Junaid Bhai is a true professional. He remained calm and gave adequate time to discuss and share various options. All dealing was done on the phone without a need for physical visit. Their prices are decent and market competitive and finishing is professional and immaculate. Best wishes ❤️", role: "JEHANGIR MEHMOOD" },
+  { quote: "Multiple artworks came to life through Junaid Sajjad. Beautiful finishing and immaculate custom framing. ❤️", role: "CASSANDRA CASSIDY" },
 ];
 
 export const faqs = [
